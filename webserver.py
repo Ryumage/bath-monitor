@@ -113,7 +113,7 @@ def bath_chart(bath: str, chart: str):
 
     # image url
     image_path = Path(IMAGE_DIR) / f"{bath}.jpg"
-    image_url = f"/images/{bath}.jpg" if image_path.exists() else None
+    image_url = f"/images/baths/{bath}.jpg" if image_path.exists() else None
 
     # render template
     return render_template(

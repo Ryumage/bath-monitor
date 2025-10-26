@@ -1,0 +1,49 @@
+# Munich Bath Monitor
+
+This project monitors the current occupancy of Munich swimming baths using their public API.  
+It stores the data in a SQLite database and provides a Flask web app with line charts, heatmaps, and current occupancy.
+
+## Features
+
+- Fetches bath occupancy every 5 minutes during opening hours
+- Stores data in SQLite with one table per bath
+- Displays:
+  - Latest occupancy
+  - Line chart for selected period
+  - Heatmap of occupancy by hour/day
+- Supports images for each bath
+- Mobile access via Ngrok
+
+## Installation
+
+### 1. Clone repository
+
+```bash
+git clone <repo_url>
+cd bath_monitor
+
+### 2. Setup Python environment
+
+```python3 -m venv venv
+source venv/bin/activate
+pip install --upgrade pip
+pip install -r requirements.txt
+
+###3. Configure images
+
+Place bath images in images/ folder named <bathkey>.jpg (e.g., north.jpg, south.jpg).
+
+###4. Run data fetcher manually
+
+```source venv/bin/activate
+python fetch_bath_data.py
+
+###5. Run web server
+
+```source venv/bin/activate
+python webserver.py
+
+###6. Schedule cron job
+
+crontab -e
+

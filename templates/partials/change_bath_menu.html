@@ -1,0 +1,22 @@
+
+<!-- partial: change_bath_menu.html -->
+<div class="dropdown dropdown-end">
+  <label tabindex="0" class="btn btn-ghost lg:hidden">
+    <!-- hamburger -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+  </label>
+  <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+    {% for key, b in baths.items() %}
+      <li><a href="/{{ key }}/{{ chart_name }}">{{ b.label }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+
+<!-- Desktop horizontal menu (always visible) -->
+<div class="hidden lg:block">
+  <ul class="menu menu-horizontal px-1">
+    {% for key, b in baths.items() %}
+      <li><a href="/{{ key }}/{{ chart_name }}" class="{% if key == selected_bath %}active{% endif %}">{{ b.label }}</a></li>
+    {% endfor %}
+  </ul>
+</div>

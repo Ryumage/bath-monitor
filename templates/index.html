@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Bath Monitor — Home{% endblock %}
+
+{% block content %}
+<h1 class="text-3xl font-bold mb-6 text-center">Münchner Bäder</h1>
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 justify-items-center">
+  {% for key, b in baths.items() %}
+  <a href="/{{ key }}/line" class="card bg-base-100 shadow-sm hover:shadow-lg transition w-full max-w-xs">
+    <figure>
+      <img src="/images/{{ key }}.jpg" alt="{{ b.label }}" class="h-40 w-full object-cover" />
+    </figure>
+    <div class="card-body">
+      <h2 class="card-title">{{ b.label }}</h2>
+    </div>
+  </a>
+  {% endfor %}
+</div>
+{% endblock %}

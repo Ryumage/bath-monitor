@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="de" data-theme="pastel">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{% block title %}Bath Monitor{% endblock %}</title>
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon/favicon_16x16.png') }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon/favicon_32x32.png') }}">
+  <link rel="icon" type="image/png" sizes="48x48" href="{{ url_for('static', filename='favicon/favicon_48x48.png') }}">
+
+  <!-- DaisyUI v5 - prebuilt + required script -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+
+  <!-- Alpine optional -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="bg-base-100 text-base-content min-h-screen flex flex-col">
+
+  <!-- HEADER -->
+  <header class="navbar bg-base-200 shadow-sm px-4">
+    <div class="flex-1">
+      <a href="/" class="text-xl font-bold flex items-center">
+        <img src="/images/logo.svg" alt="Bath Monitor Logo" class="h-16 w-auto mr-2" />
+        Bath Monitor
+      </a>
+    </div>
+
+    <!-- "Change bath" dropdown -->
+    <div class="flex-none">
+      <div class="dropdown dropdown-end">
+        <div tabindex="0" role="button" class="btn btn-sm m-1 flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none" class="w-5 h-5 mr-2 inline">
+            <path d="M54.1283 283.001C52.8319 269.74 61.6674 256.236 66.8345 244.212C101.013 164.722 175.226 108.737 272.532 113.255C369.839 117.773 347.821 179.071 332.874 185.404C316.115 192.505 311.264 167.423 297.932 172.739C288.462 176.515 297.063 191.448 275.696 194.111C267.743 195.105 262.071 180.79 253.46 179.071C246.965 177.779 243.466 190.944 235.196 190.944C228.342 190.944 226.77 180.144 220.104 177.491C214.951 175.433 210.584 191.737 202.636 193.323C192.462 195.348 185.132 161.883 163.038 191.242" stroke="#000" stroke-opacity="0.9" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M248.772 191.721C201.419 236.2 219.137 281.053 309.587 287.981" stroke="#000" stroke-opacity="0.9" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Change bath
+        </div>
+
+        <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+          {% for bath_id, bath_data in baths.items() %}
+            <li>
+              <a href="/{{ bath_id }}/{{ active_chart | default('line') }}">
+                {{ bath_data.label }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="container mx-auto px-4 py-6 flex-1">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- FOOTER (Wave Background) -->
+  <footer class="fixed bottom-0 left-0 w-full opacity-30 z-0">
+    <img src="/images/wave.svg" alt="wave" class="w-full select-none pointer-events-none" />
+  </footer>
+</body>
+</html>

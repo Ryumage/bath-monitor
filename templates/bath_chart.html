@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}{{ baths[selected_bath].label }} — {{ chart_title }}{% endblock %}
+
+{% block content %}
+<div class="flex items-center justify-between mb-4">
+  <a href="/" class="btn btn-ghost">← Back</a>
+
+  <div class="flex items-center gap-4">
+    {% if image_url %}
+      <img src="{{ image_url }}" alt="{{ baths[selected_bath].label }}" class="h-12 w-20 object-cover rounded" />
+    {% endif %}
+    <div class="text-right">
+      <div class="text-sm text-gray-500">Selected</div>
+      <div class="font-bold">{{ baths[selected_bath].label }}</div>
+    </div>
+  </div>
+</div>
+
+<!-- Tabs as links (daisyUI tabs-lift) -->
+<div class="tabs tabs-lift mb-4">
+  {% for c in chart_meta %}
+    <a href="/{{ selected_bath }}/{{ c.name }}" class="tab {% if c.name == chart_name %}tab-active{% endif %}">
+      {{ c.title }}
+    </a>
+  {% endfor %}
+</div>
+
+<h2 class="text-xl font-semibold mb-3">{{ chart_title }}</h2>
+
+<div class="card bg-base-100 p-4 shadow">
+  <div class="card-body">
+    {{ chart_html | safe }}
+  </div>
+</div>
+{% endblock %}

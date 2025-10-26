@@ -1,4 +1,9 @@
 *.db
+.env
 *.geany
 __py.cache__
 images/baths/*
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class

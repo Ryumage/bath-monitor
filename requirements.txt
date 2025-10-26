@@ -1,5 +1,9 @@
 flask
 pandas
-plotly
 requests
 python-dateutil
+plotly
+python-dotenv
+pymysql
+sqlalchemy
+
